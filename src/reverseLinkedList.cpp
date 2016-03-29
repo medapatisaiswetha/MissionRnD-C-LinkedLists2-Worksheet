@@ -13,11 +13,30 @@ NOTES:
 
 #include <stdio.h>
 
-struct node {
+struct node
+{
 	int num;
 	struct node *next;
 };
 
-struct node * reverseLinkedList(struct node *head) {
-	return NULL;
+struct node * reverseLinkedList(struct node *head)
+{
+	if (head == NULL)
+		return NULL;
+	else
+	{
+		struct node *p = NULL, *c = NULL, *n = NULL;
+		p = '\0';
+		c = head;
+		while (c != NULL)
+		{
+			n = c->next;
+			c->next = p;
+			p = c;
+			c = n;
+
+		}
+		head = p;
+	}
+	return head;
 }

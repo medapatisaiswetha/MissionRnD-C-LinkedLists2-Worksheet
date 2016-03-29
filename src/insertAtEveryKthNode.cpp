@@ -14,11 +14,48 @@ NOTES:
 #include <stdio.h>
 #include <malloc.h>
 
-struct node {
+struct node
+{
 	int num;
 	struct node *next;
 };
 
-struct node * insertAtEveryKthNode(struct node *head, int K) {
-	return NULL;
+struct node * insertAtEveryKthNode(struct node *head, int K)
+{
+	if (head == NULL || K <= 0)
+		return NULL;
+	else
+	{
+		struct  node *node = NULL, *temp1 = NULL, *temp = NULL, *node1 = NULL;
+
+		int i = 1, j = 0;
+		j = j + K;
+		temp = head;
+		int count = 0;
+		struct node* current = head;
+		while (current != NULL)
+		{
+			count++;
+			current = current->next;
+		}
+		while (j <= count)
+		{
+			if (i <j)
+			{
+				temp = temp->next;
+			}
+			else
+			{
+				node1 = (struct node*)malloc(sizeof(struct node*));
+				node1->num = K;
+				temp1 = temp->next;
+				temp->next = node1;
+				node1->next = temp1;
+				temp = temp1;
+				j = j + K;
+			}
+			i++;
+		}
+		return head;
+	}
 }
